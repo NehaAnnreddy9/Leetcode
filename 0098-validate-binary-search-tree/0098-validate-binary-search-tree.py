@@ -8,18 +8,16 @@ class Solution(object):
     res = 0
     def isValidBST(self, root):
         self.res = []
-        self.vlbst(root)
-        lr = len(self.res)
-        for i in range(1,lr):
-            if self.res[i] <= self.res[i-1]: return False
-        return True
-            
+        return self.vlbst(root)
+                 
     def vlbst(self,root):         
-        if root == None: return
-        self.vlbst(root.left)
+        if root == None: return True
+        if self.vlbst(root.left) == False: return False
+        lr = len(self.res)
+        if lr > 0 and self.res[lr-1] >= root.val: return False
         self.res.append(root.val)
-        self.vlbst(root.right)
-            
+        if self.vlbst(root.right) == False: return False
+        return True    
         """
         :type root: TreeNode
         :rtype: bool
