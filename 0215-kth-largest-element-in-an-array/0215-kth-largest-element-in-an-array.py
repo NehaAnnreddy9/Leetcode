@@ -1,6 +1,9 @@
 import heapq
 class Solution(object):
     def findKthLargest(self, nums, k):
+        return heapq.nlargest(k, nums)[-1]
+        
+        """
         k = len(nums) - k
         heapq.heapify(nums)
         t = 0
@@ -8,4 +11,4 @@ class Solution(object):
             t = heapq.heappop(nums)
             k -= 1
         return t
-        
+        """
