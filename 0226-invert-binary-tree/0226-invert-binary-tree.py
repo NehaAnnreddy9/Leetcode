@@ -13,24 +13,14 @@ class Solution(object):
             while q:
                 curr = q.popleft()
                 
-                if curr.left != None and curr.right != None:
-                    temp = curr.left
-                    curr.left = curr.right
-                    curr.right = temp
-                    q.append(curr.left)
-                    q.append(curr.right)
-                    
+                curr.left, curr.right = curr.right, curr.left
     
-                elif curr.right:
-                    curr.left = curr.right
-                    curr.right = None
-                    q.append(curr.left)
-                    
-                    
-                elif curr.left:
-                    curr.right = curr.left
-                    curr.left = None
+                if curr.right:
                     q.append(curr.right)
+                    
+                    
+                if curr.left:
+                    q.append(curr.left)
                         
             return root
                 
