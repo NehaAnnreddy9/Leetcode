@@ -15,7 +15,7 @@ class Solution(object):
         return False
 
     def isSubtreedfs(self, root, subRoot):
-        if root == None or subRoot == None: return root is None and subRoot is None
+        if root == None : return False
         
         #If the nodes are identical
         if self.is_identical(root, subRoot): return True #Separate out the logic to avoid interference with the below code
