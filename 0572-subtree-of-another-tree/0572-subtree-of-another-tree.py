@@ -10,7 +10,7 @@ class Solution(object):
         if root == None or subRoot == None: return root is None and subRoot is None
         
         if root.val == subRoot.val:
-            if self.is_identical(root.left, subRoot.left) == True and self.is_identical(root.right, subRoot.right) == True:
+            if self.is_identical(root.left, subRoot.left) and self.is_identical(root.right, subRoot.right):
                 return True
         return False
 
