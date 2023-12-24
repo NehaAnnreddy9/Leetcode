@@ -7,8 +7,7 @@
 class Solution(object):
     
     def is_identical(self, root, subRoot):
-        if root == None or subRoot == None: 
-            return root is None and subRoot is None
+        if root == None or subRoot == None: return root is None and subRoot is None
         
         if root.val == subRoot.val:
             if self.is_identical(root.left, subRoot.left) == True and self.is_identical(root.right, subRoot.right) == True:
@@ -16,12 +15,12 @@ class Solution(object):
         return False
 
     def isSubtreedfs(self, root, subRoot):
-        if root == None or subRoot == None: 
-            return root is None and subRoot is None
+        if root == None or subRoot == None: return root is None and subRoot is None
         
-        if self.is_identical(root, subRoot): return True
+        #If the nodes are identical
+        if self.is_identical(root, subRoot): return True #Separate out the logic to avoid interference with the below code
             
-        if self.isSubtreedfs(root.left, subRoot) == True or self.isSubtreedfs(root.right, subRoot) == True:
+        if self.isSubtreedfs(root.left, subRoot) or self.isSubtreedfs(root.right, subRoot):
                 return True
         
         return False
