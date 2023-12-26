@@ -22,11 +22,10 @@ class Trie(object):
 
     def search(self, word):
         cn = self.root
-        if len(cn.children) != 0:
-            for c in word:
-                if c not in cn.children: return False
-                cn = cn.children[c]
-            if cn.is_end_of_word == True: return True    
+        for c in word:
+            if c not in cn.children: return False
+            cn = cn.children[c]
+        if cn.is_end_of_word == True: return True    
         return False
         """
         :type word: str
