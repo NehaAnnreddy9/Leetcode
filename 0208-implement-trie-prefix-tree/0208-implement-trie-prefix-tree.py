@@ -35,11 +35,12 @@ class Trie(object):
 
     def startsWith(self, prefix):
         cn = self.root
-        for c in prefix:
-            if c not in cn.children: return False
-            cn = cn.children[c]
-        return True
-        
+        if len(cn.children) != 0:
+            for c in prefix:
+                if c not in cn.children: return False
+                cn = cn.children[c]
+            return True
+        return False
         """
         :type prefix: str
         :rtype: bool
