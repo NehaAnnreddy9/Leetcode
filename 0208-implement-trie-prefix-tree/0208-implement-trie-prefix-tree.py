@@ -9,12 +9,11 @@ class Trie(object):
         self.root = TrieNode()
 
     def insert(self, word):
-        if self.search(word) != True:
-            cn = self.root
-            for c in word:
-                if c not in cn.children: cn.children[c] = TrieNode()
-                cn = cn.children[c]
-            cn.is_end_of_word = True
+        cn = self.root
+        for c in word:
+            if c not in cn.children: cn.children[c] = TrieNode()
+            cn = cn.children[c]
+        cn.is_end_of_word = True
         """
         :type word: str
         :rtype: None
