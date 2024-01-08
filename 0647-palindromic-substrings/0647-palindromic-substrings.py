@@ -1,7 +1,7 @@
 class Solution:
     def countSubstrings(self, s: str) -> int:
         ans = set()
-        lp, rp, n = 0, 0, len(s)
+        n = len(s)
         
         def pss(l, r, pos):
             while l != -1 and r != n:
