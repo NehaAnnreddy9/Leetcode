@@ -1,7 +1,6 @@
 from collections import defaultdict
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        if not len(edges) and n > 1: return False
         dt = defaultdict(list)
         component_number = 0
         for (u, v) in edges: 
