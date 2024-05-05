@@ -8,7 +8,7 @@ class Solution:
                 while n + 1 in hmp: 
                     l += 1
                     n += 1
-            if l > largest: largest = l
+            largest = max(largest, l)
         return largest
             
       
