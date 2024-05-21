@@ -1,29 +1,23 @@
-class Solution(object):
-    def checkInclusion(self, s1, s2):
-        st = 0
-        hm = defaultdict(int)
-        hm1 = defaultdict(int)
-        ws = len(s1)
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1) > len(s2): return False
+        l, r = 0, len(s1) - 1
+        hp1, hp2 = defaultdict(int), defaultdict(int)
         
-        for i in s1: hm[i] += 1
+        for i in range(len(s1)):
+            hp1[s1[i]] += 1
+            hp2[s2[i]] += 1
         
-        for e in range(len(s2)):
-            hm1[s2[e]] += 1
+        while r < len(s2):
+            if hp1 == hp2: return True
+            if hp2[s2[l]] == 1: del hp2[s2[l]]
+            else: hp2[s2[l]] -=1 
+            r += 1
+            l += 1
+            if r <= len(s2) - 1: hp2[s2[r]] += 1 
             
-            if e - st + 1 > ws:
-                hm1[s2[st]] -= 1
-                if hm1[s2[st]] == 0: del hm1[s2[st]]
-                st += 1
-                
-            if hm == hm1: return True
-            
+        if hp1 == hp2: return True
         return False
-                
             
             
-        """
-        :type s1: str
-        :type s2: str
-        :rtype: bool
-        """
         
