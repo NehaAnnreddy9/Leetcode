@@ -17,8 +17,6 @@ class Solution:
             d = d.next
             f = f.next
             s = s.next
-            
-        if d.next == None and n == 0: return None
-        
+                    
         d.next = d.next.next
         return head.next
