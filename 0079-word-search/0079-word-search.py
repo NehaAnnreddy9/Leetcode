@@ -1,26 +1,30 @@
 class Solution:
     def exist(self, board: List[List[str]], word: str) -> bool:
-        dirs = [[-1,0],[0,-1],[1,0],[0,1]]
-        m, n = len(board), len(board[0])
-        rcs, wl = set(), len(word)
+        visited = set()
+        k = 0
         
-        def dfs(r, c, pos):
-            if pos == wl: return True
-            rcs.add((r, c))
-            for rd, cd in dirs:
-                rw, cl = r + rd, c + cd
-                if -1 < rw < m and -1 < cl < n and (rw, cl) not in rcs and board[rw][cl] == word[pos]: 
-                        if dfs(rw, cl, pos+1) == True:
-                            rcs.remove((r, c))
-                            return True
-            rcs.remove((r, c))
+        def dfs(x, y):
+            nonlocal k
+            visited.add((x, y))
+            ngb = [[-1, 0], [0,-1], [1, 0], [0, 1]]
+            for r, c in ngb:
+                nr, nc = x + r, y + c
+                if (nr, nc) not in visited and -1 < nr < len(board) and -1 < nc < len(board[0]) and board[nr][nc] == word[k]:
+                    k += 1
+                    if k == len(word): return True
+                    if dfs(nr, nc): return True
+                    else: k -= 1
+            visited.remove((x, y))
             return False
             
-            
-            
-        for i in range(m):
-            for j in range(n):
-                if board[i][j] == word[0] and dfs(i, j, 1): return True
         
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                if board[i][j] == word[0]:
+                    k = 1
+                    if k == len(word): return True
+                    if dfs(i, j): return True
+                    else: visited.clear()
+                    
         return False
                     
