@@ -1,23 +1,25 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        ans = []
-        tmp = []
         candidates.sort()
+        li, res = [], []
         
-        def dfs(pos,target):
-            if target == 0: ans.append(tmp[:])
-            if target <= 0: return  
-            prevC = -1
+        def dfs(i):
+            s = sum(li)
+            if s == target: 
+                res.append(li.copy())
+                return
+            elif s > target or i == len(candidates): return
             
-            for i in range(pos, len(candidates)):
-                if candidates[i] == prevC: continue
-                tmp.append(candidates[i])
-                dfs(i+1,target - candidates[i])
-                tmp.pop()                
-                prevC = candidates[i]
-                 
-        dfs(0, target)
-        return ans
+            li.append(candidates[i])
+            dfs(i+1)
+            li.pop()
+            while i + 1 < len(candidates) and candidates[i] == candidates[i+1]:
+                i += 1
+                
+            dfs(i+1)
+        
+        dfs(0)
+        return res
             
             
         
